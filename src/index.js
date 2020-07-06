@@ -17,5 +17,5 @@ app.use(require('./routes/index'));
 //Static Content
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.listen(8000);
+app.listen(4000);
 console.log('Server Listening ....')

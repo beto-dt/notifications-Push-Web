@@ -1,21 +1,21 @@
-const PUBLIC_VAPID_KEY = 'BAQJHvwEwVcf9spCbDk9z342UGaK9oIUeQloUC7LWGVWvZks0vvV6eY9EgJXgwodsUBC1tz0hBVCXmSQf1CBLsY'
+const PUBLIC_VAPID_KEY = 'BDJ9gOcxX5992_5OKJAEb-BWaLCAH-pw4i-DhPchZXRwO6AO7l07BvZDRKIzBOPTgZaeroB0qVJAg1LErUUOQBc'
 
 const subscription = async () => {
   // Service Worker
-  console.log("Registering a Service worker");
+  /* console.log("Registering a Service worker"); */
   const register = await navigator.serviceWorker.register("/worker.js", {
     scope: "/"
   });
-  console.log("New Service Worker");
+  /* console.log("New Service Worker"); */
 
   // Listen Push Notifications
-  console.log("Listening Push Notifications");
+  /* console.log("Listening Push Notifications"); */
   const subscription = await register.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
   });
 
-  console.log(subscription);
+  /* console.log(subscription); */
 
   // Send Notification
   await fetch("/subscription", {
@@ -25,7 +25,7 @@ const subscription = async () => {
       "Content-Type": "application/json"
     }
   });
-  console.log("Subscribed!");
+  /* console.log("Subscribed!"); */
 };
 
 function urlBase64ToUint8Array(base64String) {
@@ -44,11 +44,20 @@ function urlBase64ToUint8Array(base64String) {
 // UI
 const form = document.querySelector('#myform');
 const message = document.querySelector('#message');
+const title = document.querySelector('#title');
+const icon = document.querySelector('#icon');
+const image = document.querySelector('#image');
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   fetch('/new-message', {
     method: 'POST',
-    body: JSON.stringify({message: message.value}),
+    body: JSON.stringify({
+      title: title.value,
+      message: message.value,
+      icon:icon.value,
+      image:image.value
+    }),
     headers: {
       'Content-Type': 'application/json'
     }

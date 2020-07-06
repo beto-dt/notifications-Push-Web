@@ -6,4 +6,4 @@ webpush.setVapidDetails(
     process.env.PRIVATE_VAPID_KEY
 );
 
-module.exports  =webpush;
+module.exports  = webpush;

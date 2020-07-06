@@ -13,11 +13,13 @@ router.post("/subscription", async (req, res) => {
 });
 
 router.post("/new-message", async (req, res) => {
-  const { message } = req.body;
+  const { message , title ,icon ,image  } = req.body;
   // Payload Notification
   const payload = JSON.stringify({
-    title: "My Custom Notification",
-    message 
+    message,
+    title,
+    icon,
+    image
   });
   res.status(200).json();
   try {

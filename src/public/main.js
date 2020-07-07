@@ -7,7 +7,6 @@ const subscription = async () => {
     scope: "/"
   });
   /* console.log("New Service Worker"); */
-
   // Listen Push Notifications
   /* console.log("Listening Push Notifications"); */
   const subscription = await register.pushManager.subscribe({
@@ -40,7 +39,6 @@ function urlBase64ToUint8Array(base64String) {
   }
   return outputArray;
 }
-
 // UI
 const form = document.querySelector('#myform');
 const message = document.querySelector('#message');
@@ -64,7 +62,6 @@ form.addEventListener('submit', (e) => {
   });
   form.reset();
 });
-
 // Service Worker Support
 if ("serviceWorker" in navigator) {
   subscription().catch(err => console.log(err));
